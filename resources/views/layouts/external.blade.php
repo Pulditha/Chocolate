@@ -29,7 +29,7 @@
         </a>
         <!-- Page Title with Back Button -->
         <div class="flex items-center space-x-4">
-            <a href="/shop" class="text-8xl text-brown-700 font-anton">
+            <a href="javascript:history.back()" class="text-8xl text-brown-700 font-anton">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <h1 class="text-8xl text-brown-700 font-anton uppercase md:uppercase">
@@ -44,7 +44,7 @@
             <a href="/cart" class="text-brown-700 hover:text-brown-600">
                 <i class="fas fa-shopping-cart"></i>
             </a>
-            <a href="#" class="text-brown-700 hover:text-brown-600">
+            <a href="shop#searchtitle" class="text-brown-700 hover:text-brown-600">
                 <i class="fas fa-search"></i>
             </a>
                @auth

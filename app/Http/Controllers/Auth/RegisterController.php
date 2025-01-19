@@ -10,31 +10,42 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller  
 {  
-   
+    /**
+     * Handle user registration and issue Sanctum token.
+     */
     public function register(Request $request)  
     {  
+        // Validate the request data
         $this->validator($request->all())->validate();  
 
+        // Create the user
         $user = User::create([  
             'name' => $request->name,  
             'email' => $request->email,  
-            'password' => Hash::make($request->password), 
-            'role' => 'user', 
+            'password' => Hash::make($request->password),  
+            'role' => 'user',  // Default role for new users
         ]);  
 
-        // Automatically log the user in  
-        auth()->login($user);  
+        // Automatically log the user in and issue Sanctum token
+        $token = $user->createToken($request->name)->plainTextToken;
 
-        return redirect('/')->with('success', 'Registration successful!');  
+        // Return a JSON response with the token
+        return response()->json([
+            'message' => 'Registration successful!',
+            'user' => $user,
+            'token' => $token,
+        ], 201);
     }  
 
+    /**
+     * Validate incoming registration data.
+     */
     protected function validator(array $data)  
     {  
         return Validator::make($data, [  
             'name' => ['required', 'string', 'max:255'],  
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],  
-            'password' => ['required', 'string', 'min:8', 'confirmed'], 
-            
+            'password' => ['required', 'string', 'min:8', 'confirmed'],  
         ]);  
     }  
 }

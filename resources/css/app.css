@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');  
@@ -10,20 +12,23 @@
 }
 
 /* Marquee styles */  
-/* Marquee styles */  
-.marquee {  
-    display: inline-block;  
-    white-space: nowrap;  
-    animation: marquee 50s linear infinite; /* Adjust the duration as needed */  
-    /* Optional: Add padding if necessary */  
-    padding-left: 100%; /* Ensures it starts off-screen */  
-}  
+/* Marquee styles */
+.marquee {
+    display: flex;
+    gap: 2rem;  /* Adjust spacing between items */
+    animation: marquee 30s linear infinite;
+}
 
-@keyframes marquee {  
-    0% { transform: translateX(0); } /* Start from the right edge */  
-    100% { transform: translateX(-100%); } /* Move to the left edge */  
-} 
+@keyframes marquee {
+    0% {
+        transform: translateX(100%); /* Start from the right edge */
+    }
+    100% {
+        transform: translateX(-100%); /* Move to the left edge */
+    }
+}
 
+/* Fade-in and fade-out animations */
 .fade-in {
     animation: fadeIn 0.5s forwards;
 }
@@ -52,4 +57,8 @@
         opacity: 0;
         transform: translateY(-10px);
     }
+}
+
+html{
+    scroll-behavior: smooth;
 }

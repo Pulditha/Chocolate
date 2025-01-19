@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller  
 {  
+    /**
+     * Handle user login and issue Sanctum token.
+     */
     public function login(Request $request)  
     {  
         $request->validate([  
@@ -19,24 +22,48 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            return redirect()->route($user->role === 'admin' ? 'admin.dashboard' : 'account')
-                ->with('success', 'Login successful!');
+
+            // Issue Sanctum token
+            $token = $user->createToken($user->name)->plainTextToken;
+
+            // Determine redirection route
+            $redirectUrl = $user->role === 'admin' ? '/admin/dashboard' : '/account';
+
+            return response()->json([
+                'message' => 'Login successful!',
+                'user' => $user,
+                'token' => $token,
+                'redirect_url' => $redirectUrl,
+            ], 200);
         }
-        
 
-        return back()->withErrors([  
-            'email' => 'The provided credentials do not match our records.',  
-        ]);  
+        return response()->json([
+            'message' => 'The provided credentials do not match our records.',
+        ], 401);  
     }  
-    public function logout(Request $request)
+
+    /**
+     * Handle user logout and revoke token.
+     */
+    public function apiLogout(Request $request)
     {
-        Auth::logout();
-
-        // Invalidate the user's session and regenerate the CSRF token
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/')->with('success', 'Logged out successfully!');
+        // Revoke the current access token
+        $request->user()->currentAccessToken()->delete();
+    
+        return response()->json([
+            'message' => 'Logged out successfully!',
+        ], 200);
     }
+    
+    public function logout(Request $request)
+{
+    Auth::logout(); // End the user's session
+    $request->session()->invalidate(); // Invalidate the session
+    $request->session()->regenerateToken(); // Regenerate CSRF token for security
+
+    return redirect('/'); // Redirect to home or login page
+}
+
 
 }
+

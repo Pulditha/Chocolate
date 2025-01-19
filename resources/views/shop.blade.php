@@ -11,30 +11,30 @@
     <div class="flex justify-around space-x-4 px-4 relative -mt-[250px]">  
         <!-- Product 1 -->  
         <div class="flex-1 text-center">  
-            <img src="{{ asset('images/strawberry.webp') }}" alt="Description 1" class="rounded-lg w-full h-auto">  
+            <img src="{{ asset('images/choc.png') }}" alt="Description 1" class="rounded-lg w-full h-auto">  
             <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 1</p> <!-- Gray Anton-styled text -->  
         </div>  
 
         <!-- Product 2 -->  
         <div class="flex-1 text-center">  
-            <img src="{{ asset('images/chocolate4.webp') }}" alt="Description 2" class="rounded-lg w-full h-auto">  
+            <img src="{{ asset('images/choc.png') }}" alt="Description 2" class="rounded-lg w-full h-auto">  
             <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 2</p> <!-- Gray Anton-styled text -->  
         </div>  
 
         <!-- Product 3 -->  
         <div class="flex-1 text-center">  
-            <img src="{{ asset('images/chocolate3.webp') }}" alt="Description 3" class="rounded-lg w-full h-auto">  
+            <img src="{{ asset('images/choc.png') }}" alt="Description 3" class="rounded-lg w-full h-auto">  
             <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 3</p> <!-- Gray Anton-styled text -->  
         </div>  
     </div>  
-
+    <h2 class="text-brown-700 text-[9rem] text-center mb-5 font-anton" id="searchtitle">Explore</h2>  
     <div>
         @livewire('product-search')
     </div>
     
     <!-- Categories Section -->  
     <div class="py-10">  
-        <h2 class="text-brown-700 text-[10rem] text-center mb-5 font-anton">OUR CATEGORIES</h2>  
+       
         
         {{-- <!-- Marquee Section -->  
         <div class="bg-brown-700 overflow-hidden">  

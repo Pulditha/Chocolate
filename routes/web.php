@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\{RegisterController, LoginController};
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProfileController;
@@ -10,6 +10,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProfileController;
 
 // Public Routes
 Route::get('/', fn () => view('home'))->name('home');
@@ -20,9 +22,8 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.s
 require __DIR__ . '/auth.php';
 
 // Authentication Routes
-Route::post('/register', [RegisterController::class, 'register']);
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
 
 // Authenticated Routes for Regular Users
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -59,6 +60,8 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
 
 // Product Routes
 Route::resource('products', ProductController::class);
+
+
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
 Route::get('/shop', [ProductController::class, 'storeFront'])->name('shop');
 
@@ -72,4 +75,23 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/increase-quantity', [CartController::class, 'increaseQuantity'])->name('cart.increaseQuantity');
     Route::post('/cart/decrease-quantity', [CartController::class, 'decreaseQuantity'])->name('cart.decreaseQuantity');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+});
+
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/billing', function () {
+        return view('profile.billing');
+    })->name('profile.billing');
+
+    Route::get('/profile/orders', function () {
+        return view('profile.orders');
+    })->name('profile.orders');
 });

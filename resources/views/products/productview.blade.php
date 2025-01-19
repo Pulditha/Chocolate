@@ -85,7 +85,7 @@ style="min-height: 200vh; padding-bottom: 200px;">
     <img 
         src="{{ $product->images ? asset('storage/' . json_decode($product->images)[0]) : asset('images/default-product.jpg') }}" 
         alt="{{ $product->name }}" 
-        class="object-cover w-full h-full"
+        class="object-cover w-full h-full "
     >
 </div>
 </div>

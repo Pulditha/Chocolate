@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     @livewireStyles
-
 </head>
 
 @if (session('error'))
@@ -29,64 +28,64 @@
     </div>
 @endif
 
-
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
     <!-- Header -->
     <header class="bg-transparent absolute top-0 left-0 w-full z-10 shadow-none">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <!-- Logo -->
-        <a href="{{ url('/') }}" class="text-5xl font-anton text-brown-700 hover:text-brown-600">
-            BARS
-        </a>
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="{{ url('/') }}" class="text-5xl font-anton text-brown-700 hover:text-brown-600">
+                BARS
+            </a>
 
-        <!-- Navigation Links -->
-        <nav class="flex space-x-40 font-anton text-2xl">
-            <a href="/shop" class="text-brown-700 hover:text-brown-600">PRODUCTS</a>
-            <a href="/about" class="text-brown-700 hover:text-brown-600">ABOUT US</a>
-            @auth
-            <a href="/account" class="text-brown-700 hover:text-brown-600">MY ACCOUNT</a>
-        @else
-            <a href="{{ route('login') }}" class="text-brown-700 hover:text-brown-600">MY ACCOUNT</a>
-        @endauth
-    </nav>
-
-        <!-- Icons Section -->
-        <div class="flex items-center space-x-10 text-2xl">
-            <a href="/wishlist" class="text-brown-700 hover:text-brown-600">
-                <i class="fas fa-heart"></i>
-            </a>
-            <a href="/cart" class="text-brown-700 hover:text-brown-600">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
-            <a href="#" class="text-brown-700 hover:text-brown-600">
-                <i class="fas fa-search"></i>
-            </a>
-               @auth
-                    <a href="/account" class="text-brown-700 hover:text-brown-600">
-                        <i class="fas fa-user"></i>
-                        
-                    </a>
+            <!-- Navigation Links -->
+            <nav class="flex space-x-40 font-anton text-2xl">
+                <a href="{{ route('shop') }}" class="text-brown-700 hover:text-brown-600">PRODUCTS</a>
+                <a href="{{ route('about') }}" class="text-brown-700 hover:text-brown-600">ABOUT US</a>
+                @auth
+                    <a href="{{ route('account') }}" class="text-brown-700 hover:text-brown-600">MY ACCOUNT</a>
                 @else
-                    <a href="{{ route('login') }}" class="text-brown-700 hover:text-brown-600">
-                        <i class="fas fa-user"></i>
-                    </a>
+                    <a href="{{ route('login') }}" class="text-brown-700 hover:text-brown-600">MY ACCOUNT</a>
                 @endauth
-                
+            </nav>
+
+            <!-- Icons Section -->
+            <div class="flex items-center space-x-10 text-2xl">
+                <a href="{{ route('wishlist.index') }}" class="text-brown-700 hover:text-brown-600">
+                    <i class="fas fa-heart"></i>
+                </a>
+                <a href="{{ route('cart.index') }}" class="text-brown-700 hover:text-brown-600">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="{{url ('shop#searchtitle') }}" class="text-brown-700 hover:text-brown-600">
+                    <i class="fas fa-search"></i>
+                </a>
+          
+        @auth
+        <a href="{{ url('/account') }}" class="text-brown-700 hover:text-brown-600">
+            <i class="fas fa-user"></i>
+            
+        </a>
+    @else
+        <a href="{{ route('login') }}" class="text-brown-700 hover:text-brown-600">
+            <i class="fas fa-user"></i>
+        </a>
+    @endauth
+            </div>
         </div>
-    </div>
-</header>   
+    </header>
+
     <!-- Main Content -->
-    <main class="container mx-auto  py-8">
+    <main class="container mx-auto py-8">
         @yield('content')
         @livewireScripts
     </main>
 
     <!-- Footer -->
-    <footer class="bg-brown-700 text-white py-10 px-10 ">
+    <footer class="bg-brown-700 text-white py-10 px-10">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Social Links -->
             <div class="flex flex-col items-start">
-                <h3 class="text-lg ">Follow Us</h3>
+                <h3 class="text-lg">Follow Us</h3>
                 <div class="flex space-x-4 mt-4">
                     <a href="#" class="text-white hover:text-gray-400">
                         <i class="fab fa-facebook-f"></i>
@@ -102,22 +101,22 @@
                     </a>
                 </div>
             </div>
-    
+
             <!-- Footer Navigation -->
             <div>
                 <h3 class="text-lg font-anton">Quick Links</h3>
                 <nav class="flex justify-start space-x-4 mt-4">
-                    <a href="/" class="text-gray-300 hover:text-white font-anton">Home</a>
-                    <a href="/shop" class="text-gray-300 hover:text-white font-anton">Shop</a>
-                    <a href="/about" class="text-gray-300 hover:text-white font-anton">About Us</a>
-                    <a href="/wishlist" class="text-gray-300 hover:text-white font-anton">Wishlist</a>
-                    <a href="/cart" class="text-gray-300 hover:text-white font-anton">Cart</a>
+                    <a href="{{ url('/') }}" class="text-gray-300 hover:text-white font-anton">Home</a>
+                    <a href="{{ route('shop') }}" class="text-gray-300 hover:text-white font-anton">Shop</a>
+                    <a href="{{ route('about') }}" class="text-gray-300 hover:text-white font-anton">About Us</a>
+                    <a href="{{ route('wishlist.index') }}" class="text-gray-300 hover:text-white font-anton">Wishlist</a>
+                    <a href="{{ route('cart.index') }}" class="text-gray-300 hover:text-white font-anton">Cart</a>
                 </nav>
             </div>
-    
+
             <!-- Newsletter Section -->
             <div class="flex flex-col items-start">
-                <h3 class="text-lg ">Stay Updated</h3>
+                <h3 class="text-lg">Stay Updated</h3>
                 <p class="text-gray-300 mt-4">
                     Subscribe to our newsletter for the latest deals and updates!
                 </p>
@@ -130,25 +129,24 @@
                 </form>
             </div>
         </div>
-    
+
         <!-- Copyright Section -->
         <div class="mt-10 border-t border-white pt-6 text-center">
             <p class="text-gray-400">
-                &copy; {{ date('Y') }} BARS. All rights reserved. I think..
+                &copy; {{ date('Y') }} BARS. All rights reserved.
             </p>
             <div class="text-center text-sm text-white-600 mt-4">
-                Created by : Pulditha Wathsal | CB011498 | CB011498@students.apiit.lk
+                Created by: Pulditha Wathsal | CB011498 | CB011498@students.apiit.lk
             </div>
         </div>
     </footer>
-       <!-- Dismiss Button Script -->
-       <script>
-        // Dismiss button functionality
+
+    <!-- Dismiss Button Script -->
+    <script>
         document.getElementById('dismissButton')?.addEventListener('click', () => {
             document.getElementById('errorMessage').remove();
         });
-    
-        // Auto-dismiss after 5 seconds
+
         setTimeout(() => {
             document.getElementById('errorMessage')?.remove();
         }, 5000);

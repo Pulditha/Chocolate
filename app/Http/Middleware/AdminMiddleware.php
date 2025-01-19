@@ -16,7 +16,7 @@ class AdminMiddleware
             // Check if the user is trying to access the admin dashboard
             if ($request->is('admin/dashboard') && Auth::user()->role !== 'admin') {
                 // Redirect to homepage with an error message for unauthorized access
-                return redirect('/')->with('error', 'Unauthorized access. Please log out and log in as an admin.');
+                return redirect('/');
             }
 
             // Allow access if the user is an admin or not accessing admin routes

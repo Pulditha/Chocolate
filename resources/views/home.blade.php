@@ -9,26 +9,26 @@
     <div class="flex justify-around space-x-4 px-4 relative -mt-[250px]">
         <!-- Product 1 -->
         <div class="flex-1 text-center">
-            <img src="{{ asset('images/chocolate3.webp') }}" alt="Description 1" class="rounded-lg w-full h-auto">
+            <img src="{{ asset('images/choc2.png') }}" alt="Description 1" class="rounded-lg w-full h-auto">
             <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 1</p> <!-- Gray Anton-styled text -->
         </div>
         
         <!-- Product 2 -->
         <div class="flex-1 text-center">
-            <img src="{{ asset('images/chocolate4.webp') }}" alt="Description 2" class="rounded-lg w-full h-auto">
+            <img src="{{ asset('images/choc.png') }}" alt="Description 2" class="rounded-lg w-full h-auto">
             <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 2</p> <!-- Gray Anton-styled text -->
         </div>
         
         <!-- Product 3 -->
         <div class="flex-1 text-center">
-            <img src="{{ asset('images/chocolate3.webp') }}" alt="Description 3" class="rounded-lg w-full h-auto">
+            <img src="{{ asset('images/white2.png') }}" alt="Description 3" class="rounded-lg w-full h-auto">
             <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 3</p> <!-- Gray Anton-styled text -->
         </div>
     </div>
 </div>
 
 
-    <!-- Slider Section -->
+    {{-- <!-- Slider Section -->
     <div class="relative overflow-hidden mt-20 w-full h-[100vh] flex bg-brown-700">
         <div class="slider flex transition-transform duration-300" id="slider">
             <!-- Slide 1 -->
@@ -154,6 +154,6 @@
 
     // Initialize slider
     updateSlider();
-</script>
+</script> --}}
 
 @endsection

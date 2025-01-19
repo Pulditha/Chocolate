@@ -1,7 +1,7 @@
 <div id="search-bar" class="w-full flex flex-col items-center my-8 relative">
     <!-- Search Form -->
     <form class="w-3/4 flex items-center relative z-10">
-        <input wire:model.live.debounce.500ms="search" 
+        <input wire:model.live.debounce.500ms="search"
                type="search" 
                placeholder="Search products..." 
                class="w-full text-xl placeholder-gray-500 text-gray-700 border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
@@ -53,7 +53,7 @@
             @else
                 <!-- No Products Found -->
                 <div class="bg-white shadow-lg  w-full z-20 p-4 text-center text-gray-700">
-                    <p class="text-lg">😔 No sweet treats found! Try searching for something else delicious.</p>
+                    <p class="text-lg">😔 No Chocolates found! Try searching for something else delicious.</p>
                 </div>
             @endif
         </div>
