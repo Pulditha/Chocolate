@@ -12,6 +12,8 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 
 // Public Routes
 Route::get('/', fn () => view('home'))->name('home');
@@ -74,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/toggle', [CartController::class, 'toggleCart'])->name('cart.toggle');
     Route::post('/cart/increase-quantity', [CartController::class, 'increaseQuantity'])->name('cart.increaseQuantity');
     Route::post('/cart/decrease-quantity', [CartController::class, 'decreaseQuantity'])->name('cart.decreaseQuantity');
-    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout', [CheckoutController::class, 'showBillingForm'])->name('checkout.billing');  
 });
 
 
@@ -86,12 +88,17 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile/billing', function () {
-        return view('profile.billing');
-    })->name('profile.billing');
+Route::middleware('auth')->group(function () {
+   
+    Route::post('/checkout', [CheckoutController::class, 'storeBillingInfo'])->name('checkout.storeBilling');
+    Route::get('/checkout/payment', [CheckoutController::class, 'showPayment'])->name('checkout.payment');
+    Route::post('/checkout/process', [CheckoutController::class, 'processPayment'])->name('checkout.processPayment');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/success', fn () => view('checkout.success'))->name('success');
 
-    Route::get('/profile/orders', function () {
-        return view('profile.orders');
-    })->name('profile.orders');
+
 });
+
+
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');

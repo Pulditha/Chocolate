@@ -2,50 +2,43 @@
 {{-- need to add pagination , breadcrumb navigation for product detailed view --}}
 @section('content')  
 
-
 <div class="bg-gray-200 relative">  
     <div class="text-center py-10">  
-        <p class="text-[15rem] text-brown-700 font-anton">OUR PRODUCTS</p>  
+        <p class="text-[4rem] sm:text-[6rem] md:text-[10rem] lg:text-[15rem] text-brown-700 font-anton">
+            OUR PRODUCTS
+        </p>  
     </div>  
 
-    <div class="flex justify-around space-x-4 px-4 relative -mt-[250px]">  
+    <div class="flex flex-col md:flex-row justify-center md:justify-around space-y-10 md:space-y-0 md:space-x-4 px-4 relative -mt-[100px] md:-mt-[250px]">  
         <!-- Product 1 -->  
-        <div class="flex-1 text-center">  
-            <img src="{{ asset('images/choc.png') }}" alt="Description 1" class="rounded-lg w-full h-auto">  
-            <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 1</p> <!-- Gray Anton-styled text -->  
+        <div class="flex-1 text-center">
+            <img src="{{ asset('images/product1.png') }}" alt="Description 1" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
+            <p class="mt-4 text-gray-700 text-[1.5rem] md:text-[2rem]">Product Name 1</p>  
         </div>  
 
         <!-- Product 2 -->  
         <div class="flex-1 text-center">  
-            <img src="{{ asset('images/choc.png') }}" alt="Description 2" class="rounded-lg w-full h-auto">  
-            <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 2</p> <!-- Gray Anton-styled text -->  
+            <img src="{{ asset('images/choc.png') }}" alt="Description 2" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
+            <p class="mt-4 text-gray-700 text-[1.5rem] md:text-[2rem]">Product Name 2</p>  
         </div>  
 
         <!-- Product 3 -->  
         <div class="flex-1 text-center">  
-            <img src="{{ asset('images/choc.png') }}" alt="Description 3" class="rounded-lg w-full h-auto">  
-            <p class="mt-4 text-gray-700 text-[2rem] ">Product Name 3</p> <!-- Gray Anton-styled text -->  
+            <img src="{{ asset('images/product2.png') }}" alt="Description 3" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
+            <p class="mt-4 text-gray-700 text-[1.5rem] md:text-[2rem]">Product Name 3</p>  
         </div>  
     </div>  
-    <h2 class="text-brown-700 text-[9rem] text-center mb-5 font-anton" id="searchtitle">Explore</h2>  
+</div>
+
+    <h2 class="text-brown-700 text-[4rem] sm:text-[6rem] md:text-[10rem] text-center mb-5 font-anton" id="searchtitle">Explore</h2>  
     <div>
         @livewire('product-search')
     </div>
     
     <!-- Categories Section -->  
     <div class="py-10">  
-       
-        
-        {{-- <!-- Marquee Section -->  
-        <div class="bg-brown-700 overflow-hidden">  
-            <div class="marquee">  
-                <span class="text-white text-[2rem] font-anton">WHITE CHOCOLATE &nbsp;&nbsp; | &nbsp;&nbsp; DARK CHOCOLATE &nbsp;&nbsp; | &nbsp;&nbsp; MILK CHOCOLATE &nbsp;&nbsp; | &nbsp;&nbsp; FRUIT & NUT &nbsp;&nbsp; | &nbsp;&nbsp; STRAWBERRY CHOCOLATE &nbsp; &nbsp; | &nbsp;&nbsp; CARAMEL CHOCOLATE &nbsp;&nbsp;| &nbsp;&nbsp; VEGAN CHOCOLATE &nbsp;&nbsp;</span>  
-            </div>  
-        </div>  
-    </div>  --}}
-
    <!-- Categories Filter -->
-   <div class="flex justify-center space-x-6 mb-10">
+   <div class="hidden md:flex justify-center space-x-6 mb-10">
     <button class="category-button bg-whitechoc border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="white">
         <p class="text-gray-700 font-anton transform rotate-90 text-6xl">WHITE</p>
     </button>
@@ -84,29 +77,29 @@
 
 {{-- product section --}}
 
-<div id="product-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mt-20">
+<div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 mt-20">
     @foreach($products as $product)
     
-    <div class="product-card {{ strtolower($product->category) }} w-[400px] h-[500px] rounded-lg flex flex-col justify-between relative overflow-hidden"
+    <div class="product-card {{ strtolower($product->category) }} w-full h-auto rounded-lg flex flex-col justify-between relative overflow-hidden"
         data-category="{{ strtolower($product->category) }}" data-product-id="{{ $product->id }}">
     
         <!-- Wishlist Button in Top-Right Corner -->
         <div class="absolute top-2 right-2 z-20">
             @if($product->stock_status === 'Out of Stock')
                 <button 
-                    class="wishlist-button text-gray-400 text-3xl cursor-not-allowed opacity-50">
+                    class="wishlist-button text-gray-400 text-2xl cursor-not-allowed opacity-50">
                     <i class="fa-regular fa-heart"></i>
                 </button>
             @elseif(auth()->check())
                 <button
                     class="wishlist-button {{ in_array($product->id, $wishlistProductIds) ? 'text-red-500' : 'text-gray-500' }} 
-                    text-3xl hover:scale-110 transition-transform" 
+                    text-2xl hover:scale-110 transition-transform" 
                     data-product-id="{{ $product->id }}">
                     <i class="{{ in_array($product->id, $wishlistProductIds) ? 'fa-solid fa-heart' : 'fa-regular fa-heart' }}"></i>
                 </button>
             @else
                 <a href="{{ route('login') }}" 
-                    class="text-gray-500 text-3xl hover:text-red-500 transition-transform">
+                    class="text-gray-500 text-2xl hover:text-red-500 transition-transform">
                     <i class="fa-regular fa-heart"></i>
                 </a>
             @endif
@@ -115,15 +108,13 @@
         <!-- Out of Stock Watermark -->
         @if($product->stock_status === 'Out of Stock')
         <div class="absolute inset-0 bg-gray-800 bg-opacity-70 flex items-center justify-center z-10 pointer-events-none">
-            <p class="text-red-400 text-5xl font-anton uppercase tracking-wide transform rotate-12">Out of Stock</p>
+            <p class="text-red-400 text-3xl font-anton uppercase tracking-wide transform rotate-12">Out of Stock</p>
         </div>
         @endif
 
-    
         <!-- Product Image -->
         <div 
-        
-            class="relative w-full h-72 flex items-center justify-center rounded-lg overflow-hidden 
+            class="relative w-full h-48 sm:h-60 md:h-72 flex items-center justify-center rounded-lg overflow-hidden 
             {{ strtolower($product->category) === 'white' ? 'bg-whitechoc' : '' }} 
             {{ strtolower($product->category) === 'dark' ? 'bg-brown-900' : '' }} 
             {{ strtolower($product->category) === 'milk' ? 'bg-milkchoc' : '' }} 
@@ -132,7 +123,7 @@
             {{ strtolower($product->category) === 'caramel' ? 'bg-caramelchoc' : '' }} 
             {{ strtolower($product->category) === 'vegan' ? 'bg-veganchoc' : '' }}">
 
-            <a href="{{ route('product.show', $product->id) }}" class="relative w-full h-72 flex items-center justify-center rounded-lg overflow-hidden">  
+            <a href="{{ route('product.show', $product->id) }}" class="relative w-full h-full flex items-center justify-center rounded-lg overflow-hidden">  
                 <img src="{{ $product->images ? asset('storage/' . json_decode($product->images)[0]) : asset('images/default-product.jpg') }}"  
                      alt="{{ $product->name }}"  
                      class="object-contain h-full w-full">  
@@ -140,10 +131,10 @@
         </div>
 
         <!-- Product Details -->
-        <div class="flex-1 flex flex-col items-center px-6 bg-gray-300">
+        <div class="flex-1 flex flex-col items-center px-4 sm:px-6 bg-gray-300">
             <!-- Product Name -->
-            <a href="{{ route('product.show', $product->id) }}" class="flex flex-col items-center justify-between px-6 bg-gray-300 w-full">
-            <p class="text-gray-800 text-4xl font-anton uppercase md:uppercase text-center">{{ $product->name }}</p>
+            <a href="{{ route('product.show', $product->id) }}" class="flex flex-col items-center justify-between px-4 sm:px-6 bg-gray-300 w-full">
+            <p class="text-gray-800 text-2xl sm:text-3xl font-anton uppercase text-center">{{ $product->name }}</p>
 
             <!-- Product Price -->
             <p class="mt-2 text-gray-600 text-center">
@@ -160,14 +151,14 @@
             </p>
             </a>
         </div>
-        <a href="{{ route('product.show', $product->id) }}" class="flex flex-col items-center justify-between px-6 bg-gray-300 w-full">  <!-- Added <a> tag -->
+
         <!-- Product Category and Cart Button -->
-        <div class="flex flex-col items-center justify-between px-6 bg-gray-300">
+        <div class="flex flex-col items-center justify-between px-4 sm:px-6 bg-gray-300 pb-6">
             <!-- Product Category -->
-            <p class="text-2xl font-anton text-{{ strtolower($product->category) }}choc">{{ $product->category }}</p>
+            <p class="text-xl sm:text-2xl font-anton text-{{ strtolower($product->category) }}choc">{{ $product->category }}</p>
 
             <!-- Add to Cart Button -->
-            <div class="mt-4 mb-6">
+            <div class="mt-4">
                 @if($product->stock_status === 'Out of Stock')
                     <button 
                         class="cart-button bg-gray-400 text-white font-anton rounded-lg text-lg px-6 py-3 cursor-not-allowed opacity-50" disabled>
@@ -176,7 +167,7 @@
                 @elseif(auth()->check())
                     <button
                         class="cart-button {{ in_array($product->id, $cartProductIds ?? []) ? 'bg-red-600' : 'bg-brown-700' }} 
-                        text-white  font-anton rounded-lg text-lg px-6 py-3 uppercase md:uppercase" 
+                        text-white  font-anton rounded-lg text-lg px-6 py-3 uppercase" 
                         data-product-id="{{ $product->id }}">
                         <i class="{{ in_array($product->id, $cartProductIds ?? []) ? 'fas fa-trash-alt' : 'fas fa-cart-plus' }} mr-2"></i> 
                         {{ in_array($product->id, $cartProductIds ?? []) ? 'Remove from Cart' : 'Add to Cart' }}
@@ -188,11 +179,20 @@
                     </a>
                 @endif
             </div>
-        </a>
         </div>
     </div>
     @endforeach
 </div>
+
+    
+ 
+</div>
+<div class="mt-6 text-center">
+    <div class="flex justify-center ">
+        {{ $products->links() }}
+    </div>
+</div>
+
 
 {{-- notification for adding to wishlist --}}
 <div id="notification" class="hidden fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">

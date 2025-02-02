@@ -4,7 +4,7 @@
 <div class="container mx-auto px-6 ">
     <!-- Header Section -->
     <div class="text-center">  
-        <p class="text-[10rem] text-brown-700 font-anton">ABOUT US</p>  
+        <p class="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[10rem] text-brown-700 font-anton">ABOUT US</p>  
     </div>  
 
     <!-- Content Sections -->
@@ -58,7 +58,7 @@
         </div>
 
         <div class="text-center">  
-            <p class="text-[10rem] text-brown-700 font-anton">Our Brands</p>  
+            <p class="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[10rem] text-brown-700 font-anton">Our Brands</p>  
         </div>  
 
 <!-- Marquee Section -->  

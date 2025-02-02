@@ -1,7 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.external')
 
+@section('page-title', 'Profile')
 @section('content')
-<div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+
+<div class="max-w-3xl mx-auto bg-white p-6 rounded shadow md:mt-5">
     <h2 class="text-xl font-bold mb-4">Edit Profile</h2>
 
     @if (session('success'))
@@ -58,7 +60,7 @@
             @csrf
             @method('DELETE')
 
-            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded"
+            <button type="submit" class="bg-red-800 text-white px-4 py-2 rounded"
                     onclick="return confirm('Are you sure you want to delete your account?')">
                 Delete Account
             </button>

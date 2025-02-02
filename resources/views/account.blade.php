@@ -21,40 +21,42 @@
     </div>
     
 
-  <!-- Right Section -->
-<div class="flex flex-col md:w-2/3 p-6 space-y-4 justify-center">
+ <!-- Right Section -->
+ <div class="flex flex-col md:w-2/3 p-6 space-y-4 justify-center">
     <!-- Profile Manage -->
-    <div class="p-7 rounded-lg hover:bg-gray-100 transition duration-300">
-        <a href={{ route('profile.edit') }} class="text-xl font-semibold text-blue-500 hover:underline">
+    <div onclick="window.location.href='{{ route('profile.edit') }}'" 
+        class="p-7 rounded-lg hover:bg-gray-100 transition duration-300 cursor-pointer border-b border-gray-300">
+        <a href="{{ route('profile.edit') }}" class="text-xl font-semibold text-brown-700 hover:underline">
             Manage Profile
         </a>
         <p class="text-gray-600">Update your personal information and settings here.</p>
     </div>
-    <!-- Billing -->
-    <div class="p-7 rounded-lg hover:bg-gray-100 transition duration-300">
-        <a href={{ route('profile.billing') }} class="text-xl font-semibold text-blue-500 hover:underline">
-            Billing
-        </a>
-        <p class="text-gray-600">View and manage your billing information.</p>
-    </div>
+
     <!-- Orders -->
-    <div class="p-7 rounded-lg hover:bg-gray-100 transition duration-300">
-        <a href={{ route('profile.orders') }} class="text-xl font-semibold text-blue-500 hover:underline">
+    <div onclick="window.location.href='{{ route('orders.index') }}'" 
+        class="p-7 rounded-lg hover:bg-gray-100 transition duration-300 cursor-pointer border-b border-gray-300">
+        <a href="{{ route('orders.index') }}" class="text-xl font-semibold text-brown-700 hover:underline">
             Orders
         </a>
         <p class="text-gray-600">Track and manage your orders.</p>
     </div>
-      <div class="p-7 rounded-lg hover:bg-gray-100 transition duration-300">
-        <a href="#" class="text-xl font-semibold text-blue-500 hover:underline">
-            Whishlist
+
+    <!-- Wishlist -->
+    <div onclick="window.location.href='{{ route('wishlist.index') }}'" 
+        class="p-7 rounded-lg hover:bg-gray-100 transition duration-300 cursor-pointer border-b border-gray-300">
+        <a href="{{ route('wishlist.index') }}" class="text-xl font-semibold text-brown-700 hover:underline">
+            Wishlist
         </a>
-        <p class="text-gray-600">View and manage your billing information.</p>
+        <p class="text-gray-600">View and manage your wishlist.</p>
     </div>
-      <div class="p-7 rounded-lg hover:bg-gray-100 transition duration-300">
-        <a href="#" class="text-xl font-semibold text-blue-500 hover:underline">
+
+    <!-- Cart -->
+    <div onclick="window.location.href='{{ route('cart.index') }}'" 
+        class="p-7 rounded-lg hover:bg-gray-100 transition duration-300 cursor-pointer border-b border-gray-300">
+        <a href="{{ route('cart.index') }}" class="text-xl font-semibold text-brown-700 hover:underline">
             Cart
         </a>
-        <p class="text-gray-600">View and manage your billing information.</p>
+        <p class="text-gray-600">View and manage your cart.</p>
     </div>
 </div>
 

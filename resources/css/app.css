@@ -11,20 +11,26 @@
     font-family: 'Anton', sans-serif;  
 }
 
-/* Marquee styles */  
-/* Marquee styles */
+/* Default Marquee Animation */
 .marquee {
     display: flex;
-    gap: 2rem;  /* Adjust spacing between items */
+    gap: 2rem;
     animation: marquee 30s linear infinite;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .marquee {
+        animation-duration: 15s; /* Faster scrolling for mobile */
+    }
 }
 
 @keyframes marquee {
     0% {
-        transform: translateX(100%); /* Start from the right edge */
+        transform: translateX(100%);
     }
     100% {
-        transform: translateX(-100%); /* Move to the left edge */
+        transform: translateX(-100%);
     }
 }
 
@@ -59,6 +65,13 @@
     }
 }
 
+@media (max-width: 768px) { /* Adjust the max width according to your needs */  
+    .slide2 {  
+        height: auto; /* Remove the fixed height for screens smaller than 768px */  
+    }  
+}  
+
 html{
     scroll-behavior: smooth;
 }
+
