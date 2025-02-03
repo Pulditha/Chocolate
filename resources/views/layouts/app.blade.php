@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Bars-Chocolate</title>
+
+
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
@@ -27,6 +29,8 @@
         </div>
     </div>
 @endif
+
+
 
 <body class="bg-gray-200 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
 
@@ -72,18 +76,18 @@
             </button>
 
             <!-- Navigation Links -->
-            <a href="{{ url('/') }}" class="hover:text-gray-300">HOME</a>
-            <a href="{{ route('shop') }}" class="hover:text-gray-300">PRODUCTS</a>
-            <a href="{{ route('about') }}" class="hover:text-gray-300">ABOUT US</a>
+            <a href="{{ url('/') }}" class="hover:text-gray-300 {{ request()->is('/') ? 'line-through decoration-red-500' : '' }}">HOME</a>
+            <a href="{{ route('shop') }}" class="hover:text-gray-300 {{ request()->is('shop') ? 'line-through decoration-red-500' : '' }}">PRODUCTS</a>
+            <a href="{{ route('about') }}" class="hover:text-gray-300 {{ request()->is('about') ? 'line-through decoration-red-500' : '' }}">ABOUT US</a>
             @auth
-                <a href="{{ route('account') }}" class="hover:text-gray-300">MY ACCOUNT</a>
+                <a href="{{ route('account') }}" class="hover:text-gray-300 {{ request()->is('account') ? 'line-through decoration-red-500' : '' }}">MY ACCOUNT</a>
             @else
-                <a href="{{ route('login') }}" class="hover:text-gray-300">MY ACCOUNT</a>
+                <a href="{{ route('login') }}" class="hover:text-gray-300 {{ request()->is('login') ? 'line-through decoration-red-500' : '' }}">MY ACCOUNT</a>
             @endauth
 
             <!-- Mobile Icons Inside Hamburger Menu -->
             <div class="flex space-x-6 mt-6">
-                <a href="{{ route('wishlist.index') }}" class="text-white text-2xl hover:text-gray-300">
+                <a href="{{ route('wishlist.index') }}" class="text-white text-2xl hover:text-gray-300 ">
                     <i class="fas fa-heart"></i>
                 </a>
                 <a href="{{ route('cart.index') }}" class="text-white text-2xl hover:text-gray-300">

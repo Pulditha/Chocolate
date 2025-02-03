@@ -13,31 +13,23 @@ class DashboardController extends Controller
         // Dynamic Data
         $activeProducts = Product::where('stock_status', 'In Stock')->count();
         $outOfStockProducts = Product::where('stock_status', 'Out of Stock')->count();
-        $totalCustomers = User::count(); // Assuming all users are customers
+        $totalCustomers = User::where('role', 'user')->count(); // Assuming all users are customers
+        $totalOrders = Order::count(); // Count total orders
+        $totalSales = Order::sum('total_amount'); // Sum of all total_amount values
 
-        // Customer Growth (Monthly Growth)
-        $customerGrowth = User::select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
-            ->groupBy(DB::raw('MONTH(created_at)'))
-            ->orderBy('month', 'asc')
-            ->pluck('count', 'month')
-            ->toArray();
 
-        // Hardcoded Data for Orders by Status and Top-Selling Products
-        $ordersByStatus = [
-            'Pending' => 45,
-            'Shipped' => 120,
-            'Delivered' => 200,
-            'Cancelled' => 10,
-        ];
+        $revenueData = Order::selectRaw('DATE(created_at) as date, SUM(total_amount) as revenue')
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
 
-        // $topSellingProducts = Product::select('name', DB::raw('SUM(order_items.quantity) as total_quantity'), DB::raw('SUM(order_items.total_price) as total_revenue'))
-        //     ->join('order_items', 'order_items.product_id', '=', 'products.id')
-        //     ->groupBy('products.id')
-        //     ->orderByDesc('total_quantity')
-        //     ->limit(5)
-        //     ->get();
+    // Customer Growth Data (For Chart)
+    $customerGrowthData = User::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->where('role', 'customer')
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
 
-        // Pass to view
-        return view('admins.dashboard', compact('activeProducts', 'outOfStockProducts', 'totalCustomers', 'customerGrowth', 'ordersByStatus'));
+        return view('admins.dashboard', compact('activeProducts','customerGrowthData','revenueData','totalSales','totalOrders', 'outOfStockProducts', 'totalCustomers',));
     }
 }

@@ -10,9 +10,6 @@ new #[Layout('layouts.guest')] class extends Component
 {
     public LoginForm $form;
 
-    /**
-     * Handle an incoming authentication request.
-     */
     public function login(): void
     {
         $this->validate();
@@ -24,14 +21,6 @@ new #[Layout('layouts.guest')] class extends Component
         $this->redirectIntended(default: route('admin.dashboard', absolute: false), navigate: true);
     }
 }; ?>
-<html>
-    <head> 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-        @livewireStyles
-    </head>
 <div>
     @section('page-title', 'Login')
     <!-- Session Status -->
@@ -73,7 +62,7 @@ new #[Layout('layouts.guest')] class extends Component
             </a>
 
             <x-primary-button class="ms-3">
-                {{ __('Log in') }}
+                {{ __('Login') }}
             </x-primary-button>
         </div>
     </form>

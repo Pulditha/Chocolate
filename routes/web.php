@@ -44,15 +44,8 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
     Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('admin.users.destroy');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
 
-    // Admin Pages Routes
-    Route::prefix('pages')->group(function () {
-        Route::get('/home', [AdminController::class, 'editHomepage'])->name('admin.pages.home');
-        Route::get('/store', [AdminController::class, 'editStorepage'])->name('admin.pages.store');
-        Route::get('/about', [AdminController::class, 'editAboutPage'])->name('admin.pages.about');
-    });
-
     // Admin Management Routes
-    Route::get('/analytics', [AdminController::class, 'analytics'])->name('admin.analytics');
+   
     Route::get('/orders', [AdminController::class, 'manageOrders'])->name('admin.orders');
     Route::get('/products', [AdminController::class, 'manageProducts'])->name('admin.products');
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile');

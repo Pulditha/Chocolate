@@ -40,17 +40,20 @@
             </select>
         </div>
 
-        <!-- Price -->
-        <div class="flex flex-col">
-            <label for="price" class="font-semibold">Price</label>
-            <input type="number" name="price" id="price" class="border border-gray-300 rounded p-2" value="{{ $product->price }}" required>
-        </div>
+       <!-- Price -->
+<div class="flex flex-col">
+    <label for="price" class="font-semibold">Price</label>
+    <input type="number" name="price" id="price" class="border border-gray-300 rounded p-2" 
+           value="{{ old('price', $product->price) }}" required>
+</div>
 
-        <!-- Stock Quantity -->
-        <div class="flex flex-col">
-            <label for="stock_quantity" class="font-semibold">Stock Quantity</label>
-            <input type="number" name="stock_quantity" id="stock_quantity" class="border border-gray-300 rounded p-2" value="{{ $product->stock_quantity }}" required>
-        </div>
+<!-- Stock Quantity -->
+<div class="flex flex-col">
+    <label for="stock_quantity" class="font-semibold">Stock Quantity</label>
+    <input type="number" name="stock_quantity" id="stock_quantity" class="border border-gray-300 rounded p-2" 
+           value="{{ old('stock_quantity', $product->stock_quantity) }}" required>
+</div>
+
 
         <!-- Stock Status -->
         <div class="flex flex-col">
@@ -146,6 +149,26 @@
         removedImagesInput.value = image;
         document.querySelector('form').appendChild(removedImagesInput);
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const priceInput = document.getElementById("price");
+    const stockInput = document.getElementById("stock_quantity");
+
+    // Limit price to max 6 digits
+    priceInput.addEventListener("input", function () {
+        if (this.value.length > 6) {
+            this.value = this.value.slice(0, 6);
+        }
+    });
+
+    // Limit stock quantity to max 5 digits
+    stockInput.addEventListener("input", function () {
+        if (this.value.length > 5) {
+            this.value = this.value.slice(0, 5);
+        }
+    });
+});
+
 </script>
 
 @endsection

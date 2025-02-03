@@ -3,43 +3,57 @@
 @section('content')
 <div class="bg-gray-200 relative">
     <!-- Large Text -->
-    <div class="text-center">
-        <p class="text-[4rem] sm:text-[6rem] md:text-[13rem] lg:text-[20rem] text-brown-700 font-anton">CHOCOLATE</p>
-    </div>
+    <div class="text-center">  
+        <p class="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[15rem] 2xl:text-[20rem] text-brown-700 font-anton">  
+            CHOCOLATE  
+        </p>  
+    </div>  
 
    <!-- Product Images (Column on Mobile, Row on Desktop) -->  
-<div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6 px-4 relative -mt-[50px] md:-mt-[250px]">  
-    
+   <div class="flex flex-col md:flex-row justify-center md:justify-around space-y-10 md:space-y-0 md:space-x-4 px-4 relative -mt-[50px] md:-mt-[200px]">  
     <!-- Product 1 -->  
-    <div class="text-center w-full md:w-1/3">  
-        <img src="{{ asset('images/choc2.png') }}" alt="Description 1" class="rounded-lg w-auto max-w-[200px] md:max-w-none mx-auto">  
-        <p class="mt-2 text-gray-700 text-[0.8rem] md:text-[1.5rem]">Product Name 1</p>  
+    <div class="flex-1 text-center">
+        <a href="{{ url('/product/3') }}">
+            <img src="{{ asset('images/choc2.png') }}" alt="Description 1" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
+        
+        <p class="mt-4 text-gray-500 text-[1.5rem] md:text-xl">Cadbury Dairy Milk Strawberry Chocolate</p>  
+    </a>
     </div>  
 
     <!-- Product 2 -->  
-    <div class="text-center w-full md:w-1/3">  
-        <img src="{{ asset('images/choc.png') }}" alt="Description 2" class="rounded-lg w-auto max-w-[200px] md:max-w-none mx-auto">  
-        <p class="mt-2 text-gray-700 text-[0.8rem] md:text-[1.5rem]">Product Name 2</p>  
+    <div class="flex-1 text-center">  
+        <a href="{{ url('/product/5') }}">
+            <img src="{{ asset('images/choc.png') }}" alt="Description 2" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
+       
+        <p class="mt-4 text-gray-500 text-[1.5rem] md:text-xl">Hersheys dark chocolate bar</p>  
+    </a>
     </div>  
 
     <!-- Product 3 -->  
-    <div class="text-center w-full md:w-1/3">  
-        <img src="{{ asset('images/white1234.png') }}" alt="Description 3" class="rounded-lg w-auto max-w-[200px] md:max-w-none mx-auto">  
-        <p class="mt-2 text-gray-700 text-[0.8rem] md:text-[1.5rem]">Product Name 3</p>  
+    <div class="flex-1 text-center">  
+        <a href="{{ url('/product/4') }}">
+            <img src="{{ asset('images/White1234.png') }}" alt="Description 3" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
+        
+        <p class="mt-4 text-gray-500 text-[1.5rem] md:text-xl">Milka Chocolate Bar White</p>  
+    </a>
     </div>  
+</div>  
 
 </div>
+
 </div>
 
 
-<div class="overflow-hidden">
-    <div class="slide h-screen flex flex-col md:flex-row items-center justify-center w-screen flex-shrink-0 px-6 md:px-16 py-16 bg-gray-200 bg-cover bg-center text-brown-700 font-anton space-y-8">
+<div class="overflow-hidden relative">
+    <div class="slide h-screen flex flex-col md:flex-row items-center justify-center w-screen flex-shrink-0 px-6 md:px-16 py-16 bg-gray-200 bg-cover bg-center text-gray-700 font-anton space-y-8 relative">
+        <!-- Large Semi-Transparent Circle -->
+
         <!-- Image -->
-        <div class="md:w-1/2 flex justify-center">
+        <div class="md:w-1/2 flex justify-center relative z-10">
             <img src="{{ asset('images/dark.png') }}" alt="Limited Edition Dark Chocolate" class="max-w-[80%] md:max-w-[50%] h-auto object-contain">
         </div>
         <!-- Text Content -->
-        <div class="md:w-1/2 text-center md:text-left">
+        <div class="md:w-1/2 text-center md:text-left relative z-10">
             <h2 class="text-3xl md:text-8xl mb-4">Limited Edition Dark Chocolate</h2>
             <p class="text-base md:text-lg mb-6">
                 Experience the richness of our handpicked cocoa beans. A must-try for all chocolate lovers.
@@ -50,13 +64,15 @@
         </div>
     </div>
 
-    <div class="slide flex flex-col md:flex-row-reverse items-center justify-center w-screen flex-shrink-0 px-6 md:px-16 py-16 bg-gray-200 bg-cover bg-center text-brown-700 font-anton space-y-8">
-        <!-- Image (Placed Above Text in Mobile View) -->
-        <div class="md:w-1/2 flex justify-center">
+    <div class="slide flex flex-col md:flex-row-reverse items-center justify-center w-screen flex-shrink-0 px-6 md:px-16 py-16 bg-gray-200 bg-cover bg-center text-gray-700 font-anton space-y-8 relative">
+        <!-- Large Semi-Transparent Circle -->
+
+        <!-- Image -->
+        <div class="md:w-1/2 flex justify-center relative z-10">
             <img src="{{ asset('images/three.png') }}" alt="New Chocolate Launch" class="max-w-[100%] md:max-w-[80%] h-auto object-contain">
         </div>
         <!-- Text Content -->
-        <div class="md:w-1/2 text-center md:text-left">
+        <div class="md:w-1/2 text-center md:text-left relative z-10">
             <h2 class="text-3xl md:text-8xl mb-4">A New Brand, A New Taste</h2>
             <p class="text-base md:text-lg mb-6">
                 Indulge in our latest chocolate creation—crafted with premium cocoa and a unique blend of flavors.
@@ -67,10 +83,10 @@
         </div>
     </div>
 
-    <div class="slide2 h-screen flex flex-col md:flex-row items-center justify-center w-screen flex-shrink-0 px-6 md:px-16 py-16 bg-gray-200 bg-cover bg-center text-brown-700 font-anton space-y-20 relative overflow-hidden">
-        <!-- Sparkle Background Image -->
-       
-        
+    <div class="slide2 h-screen flex flex-col md:flex-row items-center justify-center w-screen flex-shrink-0 px-6 md:px-16 py-16 bg-gray-200 bg-cover bg-center text-gray-700 font-anton space-y-20 relative overflow-hidden">
+        <!-- Large Semi-Transparent Circle -->
+        <div class="absolute w-[70vw] h-[70vw] sm:w-[60vw] sm:h-[60vw] md:w-[40vw] md:h-[40vw] bg-brown-700 opacity-20 rounded-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+
         <!-- Text Content -->
         <div class="md:w-3/4 text-center relative z-10">
             <h2 class="text-3xl md:text-8xl mb-4">The Chocolate You’ve Been Looking For</h2>
@@ -82,8 +98,8 @@
             </a>
         </div>
     </div>
-    
 </div>
+
 
 
 <!-- Marquee Section -->  

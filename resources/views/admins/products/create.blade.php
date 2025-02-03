@@ -141,4 +141,33 @@
     Created by : Pulditha Wathsal | CB011498 | CB011498@students.apiit.lk
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const priceInput = document.getElementById("price");
+        const discountInput = document.getElementById("discount_price");
+    
+        priceInput.addEventListener("input", function () {
+            if (this.value.length > 6) {
+                this.value = this.value.slice(0, 6);
+            }
+        });
+    
+        discountInput.addEventListener("input", function () {
+            if (parseFloat(this.value) > parseFloat(priceInput.value)) {
+                this.value = priceInput.value;
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const stockInput = document.getElementById("stock_quantity");
+
+    stockInput.addEventListener("input", function () {
+        if (this.value.length > 5) {
+            this.value = this.value.slice(0, 5);
+        }
+    });
+});
+    </script>
+
 @endsection

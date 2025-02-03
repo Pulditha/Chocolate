@@ -13,22 +13,22 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            // Check if the user is trying to access the admin dashboard
-            if ($request->is('admin/dashboard') && Auth::user()->role !== 'admin') {
-                // Redirect to homepage with an error message for unauthorized access
-                return redirect('/');
+            // Check if the user is trying to access any admin route
+            if ($request->is('admin/*') && Auth::user()->role !== 'admin') {
+                // Redirect unauthorized users to homepage
+                return redirect('/')->with('error', 'Unauthorized access.');
             }
 
-            // Allow access if the user is an admin or not accessing admin routes
+            // Allow access if the user is an admin
             return $next($request);
         }
 
-        // If the user is not logged in and trying to access admin/dashboard
-        if ($request->is('admin/dashboard')) {
-            return redirect('/login')->with('error', 'Please log in to access the admin dashboard.');
+        // If the user is not logged in and trying to access any admin route
+        if ($request->is('admin/*')) {
+            return redirect('/login')->with('error', 'Please log in to access the admin panel.');
         }
 
-        // Allow access to non-authenticated routes
+        // Allow access to other routes
         return $next($request);
     }
 }

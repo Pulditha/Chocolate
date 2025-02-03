@@ -12,20 +12,26 @@
     <div class="flex flex-col md:flex-row justify-center md:justify-around space-y-10 md:space-y-0 md:space-x-4 px-4 relative -mt-[100px] md:-mt-[250px]">  
         <!-- Product 1 -->  
         <div class="flex-1 text-center">
+            <a href="{{ url('/product/6') }}">
             <img src="{{ asset('images/product1.png') }}" alt="Description 1" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
-            <p class="mt-4 text-gray-700 text-[1.5rem] md:text-[2rem]">Product Name 1</p>  
+            <p class="mt-4 text-gray-500 text-xl">Cadbury Dairy Milk Chocolate</p>  
+            </a>
         </div>  
 
         <!-- Product 2 -->  
         <div class="flex-1 text-center">  
+            <a href="{{ url('/product/5') }}">
             <img src="{{ asset('images/choc.png') }}" alt="Description 2" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
-            <p class="mt-4 text-gray-700 text-[1.5rem] md:text-[2rem]">Product Name 2</p>  
+            <p class="mt-4 text-gray-500 text-xl">Hersheys dark chocolate bar</p>  
+            </a>
         </div>  
 
         <!-- Product 3 -->  
-        <div class="flex-1 text-center">  
-            <img src="{{ asset('images/product2.png') }}" alt="Description 3" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
-            <p class="mt-4 text-gray-700 text-[1.5rem] md:text-[2rem]">Product Name 3</p>  
+        <div class="flex-1 text-center">
+            <a href="{{ url('/product/7') }}"> 
+            <img src="{{ asset('images/fruit.png') }}" alt="Description 3" class="rounded-lg w-3/4 md:w-full h-auto mx-auto">  
+            <p class="mt-4 text-gray-500 text-xl">lindt fruit and nut milk chocolate</p>  
+            </a>
         </div>  
     </div>  
 </div>
@@ -34,45 +40,44 @@
     <div>
         @livewire('product-search')
     </div>
-    
-    <!-- Categories Section -->  
-    <div class="py-10">  
-   <!-- Categories Filter -->
-   <div class="hidden md:flex justify-center space-x-6 mb-10">
-    <button class="category-button bg-whitechoc border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="white">
-        <p class="text-gray-700 font-anton transform rotate-90 text-6xl">WHITE</p>
-    </button>
 
-    <button class="category-button bg-milkchoc border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="milk">
-        <p class="text-brown-800 font-anton transform rotate-90 text-6xl">MILK</p>
-    </button>
+<!-- Categories Section -->  
+<div class="py-10">  
+    <!-- Categories Filter -->
+    <div class="grid grid-cols-4 gap-3 md:flex md:justify-center md:space-x-6 mb-10">
+        <button class="category-button bg-whitechoc border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="white">
+            <p class="text-gray-700 font-anton text-lg md:transform md:rotate-90 md:text-6xl">WHITE</p>
+        </button>
 
-    <button class="category-button bg-brown-900 border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="dark">
-        <p class="text-white font-anton transform rotate-90 text-6xl">DARK</p>
-    </button>
+        <button class="category-button bg-milkchoc border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="milk">
+            <p class="text-brown-800 font-anton text-lg md:transform md:rotate-90 md:text-6xl">MILK</p>
+        </button>
 
-    <button class="category-button bg-fruitnnutchoc border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="fruitnnut">
-        <p class="text-white font-anton transform rotate-90 text-5xl">FRUIT&NUT</p>
-    </button>
+        <button class="category-button bg-brown-900 border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="dark">
+            <p class="text-white font-anton text-lg md:transform md:rotate-90 md:text-6xl">DARK</p>
+        </button>
 
-    <button class="category-button bg-brown-700 border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="all">
-        <p class="text-white font-anton transform rotate-90 text-6xl text-center">ALL</p>
-    </button>
+        <button class="category-button bg-fruitnnutchoc border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="fruitnnut">
+            <p class="text-white font-anton text-sm md:transform md:rotate-90 md:text-5xl">FRUIT&NUT</p>
+        </button>
 
-    <button class="category-button bg-pink-500 border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="strawberry">
-        <p class="text-white font-anton transform rotate-90 text-4xl">STRAWBERRY</p>
-    </button>
+        <button class="category-button bg-brown-700 border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="all">
+            <p class="text-white font-anton text-lg md:transform md:rotate-90 md:text-6xl">ALL</p>
+        </button>
 
-    <button class="category-button bg-caramelchoc border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="caramel">
-        <p class="text-brown-800 font-anton transform rotate-90 text-5xl">CARAMEL</p>
-    </button>
+        <button class="category-button bg-pink-500 border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="strawberry">
+            <p class="text-white font-anton text-sm md:transform md:rotate-90 md:text-4xl">STRAWBERRY</p>
+        </button>
 
-    <button class="category-button bg-veganchoc border border-gray-300 shadow-md h-56 w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="vegan">
-        <p class="text-white font-anton transform rotate-90 text-6xl">VEGAN</p>
-    </button>
-</div>
-</div> 
+        <button class="category-button bg-caramelchoc border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="caramel">
+            <p class="text-brown-800 font-anton text-lg md:transform md:rotate-90 md:text-5xl">CARAMEL</p>
+        </button>
 
+        <button class="category-button bg-veganchoc border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="vegan">
+            <p class="text-white font-anton text-lg md:transform md:rotate-90 md:text-6xl">VEGAN</p>
+        </button>
+    </div>
+</div>  
 
 
 {{-- product section --}}
@@ -329,5 +334,20 @@
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".category-button");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function() {
+            // Remove strikethrough and red color from all buttons
+            buttons.forEach(btn => btn.classList.remove("line-through", "text-red-500"));
+
+            // Add strikethrough and red color to the clicked button
+            this.classList.add("line-through", "text-red-500");
+        });
+    });
+});
+
 </script>
     @endsection

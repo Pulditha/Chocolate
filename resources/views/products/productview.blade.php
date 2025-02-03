@@ -19,83 +19,126 @@
 <body class=" font-sans leading-normal tracking-normal">
 
     <header class="absolute top-0 left-0 w-full z-10 shadow-none" 
-        :class="{{ strtolower($product->category) === 'white' ? 'bg-white' : 'bg-gray-800' }}">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            <!-- Logo and Arrow -->
-            <div class="flex flex-col items-start space-y-2">
-                <a href="{{ url('/') }}" 
-                   class="text-5xl font-anton {{ strtolower($product->category) === 'white' ? 'text-brown-700' : 'text-white' }} hover:text-opacity-75">
-                    BARS
-                </a>
-                <a href="/shop" 
-                   class="text-3xl {{ strtolower($product->category) === 'white' ? 'text-brown-700' : 'text-white' }} font-anton">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-            </div>
-    
-            <!-- Navigation Icons -->
-            <div class="flex items-center space-x-10 text-2xl text-brown-700">
-                <a href="/wishlist" class="hover:opacity-75">
-                    <i class="fas fa-heart"></i>
-                </a>
-                <a href="/cart" class="hover:opacity-75">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a href="#" class="hover:opacity-75">
-                    <i class="fas fa-search"></i>
-                </a>
-                @auth
-                    <a href="/account" class="hover:opacity-75">
-                        <i class="fas fa-user"></i>
-                    </a>
-                @else
-                    <a href="{{ route('login') }}" class="hover:opacity-75">
-                        <i class="fas fa-user"></i>
-                    </a>
-                @endauth
-            </div>
+    :class="{{ strtolower($product->category) === 'white' ? 'bg-white' : 'bg-gray-800' }}">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Logo and Back Arrow -->
+        <div class="flex flex-col items-start space-y-2">
+            <a href="{{ url('/') }}" 
+               class="text-2xl md:text-5xl font-anton {{ strtolower($product->category) === 'white' ? 'text-brown-700' : 'text-white' }} hover:text-opacity-75">
+                BARS
+            </a>
+            <a href="/shop" 
+               class="text-3xl font-anton {{ strtolower($product->category) === 'white' ? 'text-brown-700' : 'text-white' }}">
+                <i class="fas fa-arrow-left"></i>
+            </a>
         </div>
-    </header>
+
+<!-- Navigation Icons -->
+<div class="hidden md:flex items-center space-x-10 text-2xl text-brown-700">
+    <a href="/wishlist" class="hover:opacity-75">
+        <i class="fas fa-heart"></i>
+    </a>
+    <a href="/cart" class="hover:opacity-75">
+        <i class="fas fa-shopping-cart"></i>
+    </a>
+    <a href="#" class="hover:opacity-75">
+        <i class="fas fa-search"></i>
+    </a>
+    @auth
+        <a href="/account" class="hover:opacity-75">
+            <i class="fas fa-user"></i>
+        </a>
+    @else
+        <a href="{{ route('login') }}" class="hover:opacity-75">
+            <i class="fas fa-user"></i>
+        </a>
+    @endauth
+</div>
+
+        <!-- Navigation Icons -->
+        <div class="flex items-center space-x-4 lg:hidden">
+            <a href="{{ route('wishlist.index') }}" 
+               class="text-xl hover:opacity-75 {{ strtolower($product->category) === 'white' ? 'text-brown-700' : 'text-white' }}">
+                <i class="fas fa-heart"></i>
+            </a>
+            <a href="{{ route('cart.index') }}" 
+               class="text-xl hover:opacity-75 {{ strtolower($product->category) === 'white' ? 'text-brown-700' : 'text-white' }}">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <button class="text-2xl focus:outline-none hover:opacity-75 
+                {{ strtolower($product->category) === 'white' ? 'text-brown-700' : 'text-white' }}" id="menu-btn">
+                <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+            </button>
+        </div>
+    </div>
+</header>
+
+
+    
 
     <!-- Main Content -->
     <main class="container mx-auto min-h-screen flex flex-col lg:flex-row ">
-        <!-- Image Section -->
-        <!-- Parent container -->
-<div class="w-full lg:w-[65%] relative flex items-center justify-center lg:items-start 
+<!-- Desktop Image Section -->
+<div class="hidden lg:flex w-full lg:w-[65%] relative items-center justify-center lg:items-start 
+    {{ strtolower($product->category) === 'white' ? 'bg-whitechoc' : '' }} 
+    {{ strtolower($product->category) === 'dark' ? 'bg-brown-900' : '' }} 
+    {{ strtolower($product->category) === 'milk' ? 'bg-milkchoc' : '' }} 
+    {{ strtolower($product->category) === 'fruitnnut' ? 'bg-fruitnnutchoc' : '' }} 
+    {{ strtolower($product->category) === 'strawberry' ? 'bg-pink-500' : '' }} 
+    {{ strtolower($product->category) === 'caramel' ? 'bg-caramelchoc' : '' }} 
+    {{ strtolower($product->category) === 'vegan' ? 'bg-veganchoc' : '' }}" 
+    style="min-height: 200vh; padding-bottom: 200px;">
+    
+    <!-- Sticky Element -->
+    <div class="sticky top-10 max-w-[60%] max-h-[60%] w-[600px] h-[600px] sm:w-96 md:w-[500px]"> 
+        @if($product->stock_status === 'Out of Stock')
+            <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-10">
+                <p class="text-red-400 text-7xl font-anton uppercase tracking-wider transform rotate-12">
+                    Out of Stock
+                </p>
+            </div>
+        @endif
+
+        <!-- Product Image -->
+        <img 
+            src="{{ $product->images ? asset('storage/' . json_decode($product->images)[0]) : asset('images/default-product.jpg') }}" 
+            alt="{{ $product->name }}" 
+            class="object-cover w-full h-full "
+        >
+    </div>
+</div>
+
+<!-- Mobile Image Section -->
+<div class="lg:hidden w-full flex items-center justify-center py-20
 {{ strtolower($product->category) === 'white' ? 'bg-whitechoc' : '' }} 
 {{ strtolower($product->category) === 'dark' ? 'bg-brown-900' : '' }} 
 {{ strtolower($product->category) === 'milk' ? 'bg-milkchoc' : '' }} 
 {{ strtolower($product->category) === 'fruitnnut' ? 'bg-fruitnnutchoc' : '' }} 
 {{ strtolower($product->category) === 'strawberry' ? 'bg-pink-500' : '' }} 
 {{ strtolower($product->category) === 'caramel' ? 'bg-caramelchoc' : '' }} 
-{{ strtolower($product->category) === 'vegan' ? 'bg-veganchoc' : '' }}" 
-style="min-height: 200vh; padding-bottom: 200px;">
+{{ strtolower($product->category) === 'vegan' ? 'bg-veganchoc' : '' }}" >
+    
+    <div class="max-w-full max-h-full w-80 sm:w-96 md:w-[500px]">
+        @if($product->stock_status === 'Out of Stock')
+            <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-10">
+                <p class="text-red-400 text-5xl sm:text-7xl font-anton uppercase tracking-wider transform rotate-12">
+                    Out of Stock
+                </p>
+            </div>
+        @endif
 
-<!-- Sticky Element -->
-<div class="sticky top-[10%] max-w-[80%] max-h-[80%] w-[700px] h-[700px]">
-    @if($product->stock_status === 'Out of Stock')
-        <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-10">
-            <p class="text-red-400 text-7xl font-anton uppercase tracking-wider transform rotate-12">
-                Out of Stock
-            </p>
-        </div>
-    @endif
+        <img src="{{ $product->images ? asset('storage/' . json_decode($product->images)[0]) : asset('images/default-product.jpg') }}" 
+             alt="{{ $product->name }}" class="object-cover w-full h-auto">
+    </div>
+</div>
 
-    <!-- Product Image -->
-    <img 
-        src="{{ $product->images ? asset('storage/' . json_decode($product->images)[0]) : asset('images/default-product.jpg') }}" 
-        alt="{{ $product->name }}" 
-        class="object-cover w-full h-full "
-    >
-</div>
-</div>
 
     
         <!-- Text Section -->
-        <div class="w-full lg:w-[35%] flex flex-col justify-start space-y-6 px-6 py-8 lg:py-0 mt-32 pt-10">
-            <h1 class="text-7xl font-anton text-gray-800 uppercase md:uppercase ">{{ $product->name }}</h1>
+        <div class="w-full lg:w-[35%] flex flex-col justify-start space-y-6 px-6 py-8 lg:py-0  pt-10 md:mt-32">
+            <h1 class="text-5xl md:text-7xl font-anton text-gray-800 uppercase md:uppercase ">{{ $product->name }}</h1>
 
-            <p class="text-8xl font-anton">
+            <p class="text-3xl md:text-8xl font-anton">
                 @if($product->discount_price)
                     <span class="text-red-500">{{ $product->currency }} {{ number_format($product->price - $product->discount_price) }}</span>
                     <span class="line-through text-gray-400 text-4xl">{{ $product->currency }} {{ number_format($product->price) }}</span>
@@ -105,46 +148,48 @@ style="min-height: 200vh; padding-bottom: 200px;">
             </p>
 
 
-            <p class="text-4xl text-gray-700 font-anton uppercase md:uppercase "> {{ ucfirst(strtolower($product->category)) }} CHOCOLATE</p>
-            <p class="text-xl text-gray-600">{{ $product->description ?? 'No description available.' }}</p>
+            <p class="text-2xl md:text-4xl text-gray-700 font-anton uppercase md:uppercase "> {{ ucfirst(strtolower($product->category)) }} CHOCOLATE</p>
+            <p class="text-lg md:text-xl text-gray-600">{{ $product->description ?? 'No description available.' }}</p>
     
           
-            <p class="text-4xl font-anton text-gray-700 uppercase md:uppercase">BRAND: {{ $product->brand ?? 'No brand specified' }}</p>
-            <p class="text-4xl font-anton text-gray-700 uppercase md:uppercase">STOCK STATUS: {{ ucfirst(strtolower($product->stock_status)) }}</p>
-            <p class="text-4xl font-anton text-gray-700 uppercase md:uppercase">ALLERGY INFORMATION: {{ $product->allergy_info ?? 'Not specified' }}</p>
+            <p class="text-2xl md:text-4xl font-anton text-gray-700 uppercase md:uppercase">BRAND: {{ $product->brand ?? 'No brand specified' }}</p>
+            <p class="text-2xl md:text-4xl font-anton text-gray-700 uppercase md:uppercase">STOCK STATUS: {{ ucfirst(strtolower($product->stock_status)) }}</p>
+            <p class="text-2xl md:text-4xl font-anton text-gray-700 uppercase md:uppercase">ALLERGY INFORMATION: {{ $product->allergy_info ?? 'Not specified' }}</p>
             <p class="text-2xl font-anton text-gray-500 uppercase md:uppercase">WEIGHT: {{ $product->weight ?? 'Not specified' }}</p>
             <p class="text-2xl font-anton text-gray-500 uppercase md:uppercase"> {{ $product->storage_instructions ?? 'Not specified' }}</p>
 
     
     
-            <div class="mt-6">
+            <div class="mt-6 flex justify-center lg:justify-start">
                 @if($product->stock_status === 'Out of Stock')
                     <button 
-                        class="cart-button bg-gray-400 text-white font-medium rounded-lg text-sm px-6 py-3 cursor-not-allowed opacity-50" 
+                        class="cart-button bg-gray-400 text-white font-medium rounded-lg text-sm px-6 py-3 cursor-not-allowed opacity-50 w-full max-w-xs" 
                         disabled>
                         Out of Stock
                     </button>
                 @elseif(auth()->check())
                     <button
                         class="cart-button {{ in_array($product->id, $cartProductIds ?? []) ? 'bg-red-600' : 'bg-brown-700' }} 
-                        text-white  font-anton rounded-lg px-6 py-3 text-4xl" 
+                        text-white font-anton rounded-lg px-6 py-3 text-4xl w-full max-w-xs" 
                         data-product-id="{{ $product->id }}">
                         <i class="{{ in_array($product->id, $cartProductIds ?? []) ? 'fas fa-trash-alt' : 'fas fa-cart-plus' }} mr-2"></i>
                         {{ in_array($product->id, $cartProductIds ?? []) ? 'Remove from Cart' : 'Add to Cart' }}
                     </button>
                 @else
-                    <a href="{{ route('login') }}" class="bg-brown-700 text-white px-4 py-2 font-anton rounded-lg  text-2xl">
+                    <a href="{{ route('login') }}" 
+                       class="bg-brown-700 text-white px-4 py-2 font-anton rounded-lg text-2xl w-full max-w-xs text-center">
                         Login to Add to Cart
                     </a>
                 @endif
             </div>
+            
         </div>
     </main>
     
     <!-- Ingredients Section -->
     <section class="bg-white py-12 mt-10">
-        <h2 class="text-center text-9xl font-anton text-gray-600">INGREDIENTS</h2>
-        <p class="text-center text-2xl mt-6 text-gray-700 px-4">
+        <h2 class="text-6xl md:text-9xl text-center  font-anton text-gray-600">INGREDIENTS</h2>
+        <p class="text-lg md:text-2xl text-center  mt-6 text-gray-700 px-4">
             {{ $product->ingredients ?? 'No ingredients specified.' }}
         </p>
     </section>

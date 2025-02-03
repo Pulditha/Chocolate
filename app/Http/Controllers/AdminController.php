@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;  
 
-use Illuminate\Http\Request;  
+use Illuminate\Http\Request; 
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -10,14 +11,13 @@ class AdminController extends Controller
     {
         return view('admins.dashboard'); // Admin dashboard view
     }
-    public function analytics()
-    {
-        return view('admins.analytics');
-    }
+
     
     public function manageOrders()
     {
-        return view('admins.orders');
+        $orders = Order::orderBy('created_at', 'desc')->get();
+        return view('admins.orders', compact('orders'));
+      
     }
     
     public function manageProducts()
@@ -30,23 +30,5 @@ class AdminController extends Controller
         return view('admins.users');
     }
     
-    public function editHomepage()
-    {
-        return view('admins.pages.home');
-    }
-    
-    public function editStorepage()
-    {
-        return view('admins.pages.store');
-    }
-    
-    public function editAboutPage()
-    {
-        return view('admins.pages.about');
-    }
-    
-    public function editProfilePage()
-    {
-        return view('admins.profile');
-    }
+
 }

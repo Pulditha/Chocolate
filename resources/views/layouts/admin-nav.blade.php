@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Bars-Chocolate | Admin</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
@@ -15,6 +15,11 @@
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        canvas {  
+            width: 100% !important; /* Ensures full width */  
+            height: 300px !important; /* Set a fixed height */  
+        }  </style>
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
@@ -54,25 +59,7 @@
                 <li>
                     <a href="{{ route('admin.dashboard') }}" class="block p-2 hover:bg-brown-800 rounded">Dashboard</a>
                 </li>
-                <li>
-                    <a href="{{ route('admin.analytics') }}" class="block p-2 hover:bg-brown-800 rounded">Analytics</a>
-                </li>
-                <li>
-                    <button
-                        id="pages-toggle"
-                        class="w-full text-left block p-2 hover:bg-brown-800 rounded"
-                    >
-                        Pages
-                    </button>
-                    <ul
-                        id="pages-menu"
-                        class="hidden bg-brown-600 space-y-1 rounded p-2 mt-1"
-                    >
-                        <li><a href="{{ route('admin.pages.home') }}" class="block hover:bg-brown-700 p-1 rounded">Homepage</a></li>
-                        <li><a href="{{ route('admin.pages.store') }}" class="block hover:bg-brown-700 p-1 rounded">Store Page</a></li>
-                        <li><a href="{{ route('admin.pages.about') }}" class="block hover:bg-brown-700 p-1 rounded">About Us</a></li>
-                    </ul>
-                </li>
+
                 <li>
                     <a href="{{ route('admin.orders') }}" class="block p-2 hover:bg-brown-800 rounded">Orders</a>
                 </li>
