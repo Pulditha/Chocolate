@@ -3,7 +3,7 @@
 return [
 
 
-    'paths' => ['*'],
+    'paths' => ['*','storage/*'],
 
     'allowed_methods' => ['*'],
 
@@ -13,7 +13,7 @@ return [
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => [],
+    'exposed_headers' => ['Access-Control-Allow-Origin'],
 
     'max_age' => 0,
 
