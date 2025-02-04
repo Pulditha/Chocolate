@@ -42,7 +42,7 @@
     </div>
 
 <!-- Categories Section -->  
-<div class="py-10">  
+<div class="">  
     <!-- Categories Filter -->
     <div class="grid grid-cols-4 gap-3 md:flex md:justify-center md:space-x-6 mb-10">
         <button class="category-button bg-whitechoc border border-gray-300 shadow-md h-28 w-16 md:h-56 md:w-24 flex items-center justify-center opacity-85 hover:opacity-100" data-category="white">

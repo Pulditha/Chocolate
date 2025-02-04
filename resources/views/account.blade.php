@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mx-auto  flex flex-col md:flex-row ">
     <!-- Left Section -->
-    <div class="flex flex-col items-center justify-center md:w-1/3 p-6 h-[calc(100vh-3rem)] border-r-2 border-brown-700">
+    <div class="flex flex-col items-center justify-center  md:w-1/3 p-6  border-r-2 border-brown-700 md:h-[calc(100vh-3rem)] ">
         <!-- User Avatar -->
         <div class="w-64 h-64 bg-brown-700 text-white flex items-center justify-center rounded-full text-9xl font-anton">
             {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}

@@ -71,6 +71,39 @@
             </button>
         </div>
     </div>
+
+    <!-- Mobile Fullscreen Menu -->
+    <div class="fixed inset-0 bg-brown-700 text-white flex flex-col items-center justify-center text-3xl font-anton space-y-8 opacity-0 invisible transition-all duration-300"
+    id="mobile-menu">
+    <!-- Close Button -->
+    <button class="absolute top-6 right-6 text-white text-2xl focus:outline-none" id="close-menu">
+        <i class="fas fa-times"></i> <!-- X (Close) Icon -->
+    </button>
+
+    <!-- Navigation Links -->
+    <a href="{{ url('/') }}" class="hover:text-gray-300 {{ request()->is('/') ? 'line-through decoration-red-500' : '' }}">HOME</a>
+    <a href="{{ route('shop') }}" class="hover:text-gray-300 {{ request()->is('shop') ? 'line-through decoration-red-500' : '' }}">PRODUCTS</a>
+    <a href="{{ route('about') }}" class="hover:text-gray-300 {{ request()->is('about') ? 'line-through decoration-red-500' : '' }}">ABOUT US</a>
+    @auth
+        <a href="{{ route('account') }}" class="hover:text-gray-300 {{ request()->is('account') ? 'line-through decoration-red-500' : '' }}">MY ACCOUNT</a>
+    @else
+        <a href="{{ route('login') }}" class="hover:text-gray-300 {{ request()->is('login') ? 'line-through decoration-red-500' : '' }}">MY ACCOUNT</a>
+    @endauth
+
+    <!-- Mobile Icons Inside Hamburger Menu -->
+    <div class="flex space-x-6 mt-6">
+        <a href="{{ route('wishlist.index') }}" class="text-white text-2xl hover:text-gray-300 ">
+            <i class="fas fa-heart"></i>
+        </a>
+        <a href="{{ route('cart.index') }}" class="text-white text-2xl hover:text-gray-300">
+            <i class="fas fa-shopping-cart"></i>
+        </a>
+        <a href="{{ url('shop#searchtitle') }}" class="text-white text-2xl hover:text-gray-300">
+            <i class="fas fa-search"></i>
+        </a>
+    </div>
+</div>
+
 </header>
 
 
@@ -274,6 +307,19 @@
                 });
             });
         });
+
+        const menuBtn = document.getElementById("menu-btn");
+    const closeMenuBtn = document.getElementById("close-menu");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("opacity-0", "invisible");
+    });
+
+    closeMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("opacity-0", "invisible");
+    });
+
     
     </script>
 </body>
