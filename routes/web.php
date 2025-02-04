@@ -14,6 +14,17 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+
+Route::get('/storage/{path}', function ($path) {
+    if (Storage::exists("public/$path")) {
+        return Response::make(Storage::get("public/$path"))
+            ->header("Content-Type", Storage::mimeType("public/$path"))
+            ->header("Access-Control-Allow-Origin", "*"); // Allow CORS
+    }
+})->where('path', '.*');
+
 
 // Public Routes
 Route::get('/', fn () => view('home'))->name('home');
